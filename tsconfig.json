@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true
+  },
+  "include": ["src/a11y-nav.ts"],
+  "exclude": ["node_modules", "**/*.d.ts", "dist"]
+}

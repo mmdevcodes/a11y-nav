@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A11Y Nav</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="a11y-nav">
+            <li>
+                <button aria-expanded="false" aria-controls="custom_id_1">
+                    Multi-level Example
+                </button>
+                <ul id="custom_id_1">
+                    <li>
+                        <button aria-expanded="false" aria-controls="custom_id_2">
+                            Normal Multi Example
+                        </button>
+                        <ul id="custom_id_2">
+                            <li>
+                                <button aria-expanded="false" aria-controls="custom_id_3">
+                                    Normal Multi Example 2
+                                </button>
+                                <ul id="custom_id_3">
+                                    <li><a href="#">SUB SUB SUB SUBS!</a></li>
+                                    <li><a href="#">SUB SUB SUB SUBS!</a></li>
+                                    <li><a href="#">SUB SUB SUB SUBS!</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Sub Sub Nav Link 2</a></li>
+                            <li><a href="#">Sub Sub Nav Link 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button aria-expanded="false" aria-controls="custom_id_abc">
+                            Test 1
+                        </button>
+                        <ul id="custom_id_abc">
+                            <li><a href="#">Test Sub Sub Nav Link</a></li>
+                            <li><a href="#">Test Sub Sub Nav Link 2</a></li>
+                            <li><a href="#">Test Sub Sub Nav Link 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button aria-expanded="false" aria-controls="custom_id_xyz">
+                            Test 2
+                        </button>
+                        <ul id="custom_id_xyz">
+                            <li><a href="#">Sub Sub Nav Link</a></li>
+                            <li><a href="#">Sub Sub Nav Link 2</a></li>
+                            <li><a href="#">Sub Sub Nav Link 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="has-mega-menu">
+                <button aria-expanded="false" aria-controls="custom_id_mega">
+                    Custom Mega Menu
+                </button>
+                <div class="mega-menu" id="custom_id_mega">
+                    <ul>
+                        <li>
+                            <a href="#">Parent Page</a>
+                            <ul>
+                                <li><a href="#">Child Page 1</a></li>
+                                <li><a href="#">Child Page 2</a></li>
+                                <li><a href="#">Child Page 3</a></li>
+                                <li><a href="#">Child Page 4</a></li>
+                                <li><a href="#">Child Page 5</a></li>
+                                <li><a href="#">Child Page 6</a></li>
+                                <li><a href="#">Child Page 7</a></li>
+                                <li><a href="#">Child Page 8</a></li>
+                                <li><a href="#">Child Page 9</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Parent Page</a>
+                            <ul>
+                                <li><a href="#">Child Page 1</a></li>
+                                <li><a href="#">Child Page 2</a></li>
+                                <li><a href="#">Child Page 3</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Parent Page</a>
+                            <ul>
+                                <li><a href="#">Child Page 1</a></li>
+                                <li><a href="#">Child Page 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Parent Page</a>
+                            <ul>
+                                <li><a href="#">Child Page 1</a></li>
+                                <li><a href="#">Child Page 2</a></li>
+                                <li><a href="#">Child Page 3</a></li>
+                                <li><a href="#">Child Page 4</a></li>
+                                <li><a href="#">Child Page 5</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Parent Page</a>
+                            <ul>
+                                <li><a href="#">Child Page 1</a></li>
+                                <li><a href="#">Child Page 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Parent Page</a>
+                            <ul>
+                                <li><a href="#">Child Page 1</a></li>
+                                <li><a href="#">Child Page 2</a></li>
+                                <li><a href="#">Child Page 3</a></li>
+                                <li><a href="#">Child Page 4</a></li>
+                                <li><a href="#">Child Page 5</a></li>
+                                <li><a href="#">Child Page 6</a></li>
+                                <li><a href="#">Child Page 7</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="https://picsum.photos/250" alt="" />
+                </div>
+            </li>
+            <li>
+                <button aria-expanded="false" aria-controls="custom_id_menu">
+                    Menu
+                </button>
+                <ul id="custom_id_menu">
+                    <li>
+                        <a href="#">Top Link</a>
+                    </li>
+                    <li>
+                        <button aria-expanded="false" aria-controls="with_children_1">
+                            With Children
+                        </button>
+                        <ul id="with_children_1">
+                            <li><a href="#">Child Page 1</a></li>
+                            <li><a href="#">Child Page 2</a></li>
+                            <li><a href="#">Child Page 3</a></li>
+                            <li><a href="#">Child Page 4</a></li>
+                            <li><a href="#">Child Page 5</a></li>
+                            <li><a href="#">Child Page 6</a></li>
+                            <li><a href="#">Child Page 7</a></li>
+                            <li><a href="#">Child Page 8</a></li>
+                            <li><a href="#">Child Page 9</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button aria-expanded="false" aria-controls="with_children_2">
+                            With Children 2
+                        </button>
+                        <ul id="with_children_2">
+                            <li><a href="#">Child Page 1</a></li>
+                            <li><a href="#">Child Page 2</a></li>
+                            <li><a href="#">Child Page 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-a11y-link>Simple Link</a>
+            </li>
+            <li>
+                <button aria-expanded="false" aria-controls="custom_id_menu_2">
+                    Menu 2
+                </button>
+                <ul id="custom_id_menu_2">
+                    <li>
+                        <button aria-expanded="false" aria-controls="another_example_id">
+                            Test Last Menu
+                        </button>
+                        <ul id="another_example_id">
+                            <li><a href="#">Last Menu</a></li>
+                            <li><a href="#">Is Right Aligned</a></li>
+                            <li><a href="#">When Opened</a></li>
+                            <li><a href="#">Child Page 1</a></li>
+                            <li><a href="#">Child Page 2</a></li>
+                            <li><a href="#">Child Page 3</a></li>
+                            <li><a href="#">Child Page 4</a></li>
+                            <li><a href="#">Child Page 5</a></li>
+                            <li><a href="#">Child Page 6</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                    <li><a href="#">Link 5</a></li>
+                    <li><a href="#">Link 6</a></li>
+                    <li><a href="#">Link 7</a></li>
+                    <li><a href="#">Link 8</a></li>
+                    <li><a href="#">Link 9</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <p>
+        The site navigation utilizes keyboard functionality using the arrow keys,
+        enter, escape, and spacebar commands. Arrow keys can navigate between
+        previous/next items and also move down into a nested menu. Enter will open
+        a nested menu and escape will close the current menu. Spacebar will open
+        the current menu.
+    </p>
+    <p>Currently works in all browsers except IE 11 until I figure out how to correctly polyfill the UMD build.</p>
+    <h2>Example Usage</h2>
+    <pre><code class="language-js">
+const a11yNav = new A11YNav(document.querySelector(".a11y-nav"), options);
+    </code></pre>
+    <script type="text/plain" class="language-html">
+<ul class="a11y-nav">
+  <li>
+    <button aria-expanded="false" aria-controls="id_here">First Level Item</button>
+    <ul id="id_here">
+      <li>
+        <button aria-expanded="false" aria-controls="id_here_2">Second Level Item</button>
+        <ul id="id_here_2">...</ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#">Simple Link</a></li>
+  <li>
+    <button aria-expanded="false" aria-controls="id_here_3">Custom Mega Menu</button>
+    <!-- Example of using your own custom mega menu HTML -->
+    <div id="id_here_3" class="mega-menu">
+      <ul>...</ul>
+      <img src="image.jpg" alt="" />
+    </div>
+  </li>
+  ...
+</ul>
+    </script>
+    <h2>Default Options</h2>
+    <pre><code class="language-js">
+// adds delay for toggling menu open/close animation classes
+animate: true,
+// amount of time in ms for menu open/close animation
+duration: 300,
+// Enables use of arrow keys to navigate menus
+useArrowKeys: true,
+// Enables closing of menus when focus leaves the nav
+closeOnBlur: true,
+    </code></pre>
+    <h2>Methods</h2>
+    <pre><code class="language-js">
+// Only option currently available is destroy
+const a11yNav = new A11YNav(document.querySelector('.a11y-nav'));
+a11yNav.destroy();
+    </code></pre>
+
+    <script type="module" src="/src/index.ts"></script>
+</body>
+
+</html>
