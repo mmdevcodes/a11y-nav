@@ -1,6 +1,8 @@
 # A11Y Nav
 
-Library for accessible navigations
+Library for accessible navigations. https://mmahandev.github.io/a11y-nav/
+
+Currently a work in progress, but it has bare minimum functionality needed for production use. Will be adding features as I need them.
 
 ## Install
 
