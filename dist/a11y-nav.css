@@ -1,0 +1,129 @@
+.a11y-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global/Reset Styles */
+
+.a11y-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.a11y-nav a,
+.a11y-nav button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 1em;
+}
+
+.a11y-nav a:focus,
+.a11y-nav button:focus {
+  outline: 3px solid dodgerblue;
+}
+
+/* Show arrow for dropdowns */
+
+.a11y-nav button[aria-expanded]::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  height: 0.35em;
+  width: 0.35em;
+  margin-left: 0.5em;
+  transform: rotate(45deg);
+  flex: 0 0 auto;
+}
+
+.a11y-nav button[aria-expanded="true"]::after {
+  transform: rotate(-135deg);
+}
+
+/* Hide/Show Menus */
+
+.a11y-nav [aria-expanded][aria-controls] ~ [id] {
+  display: none;
+}
+
+.a11y-nav [aria-expanded][aria-controls] ~ .a11y-nav-active {
+  display: block;
+}
+
+.a11y-nav [aria-expanded][aria-controls] ~ .a11y-nav-animate-in {
+  animation: a11y-nav-show 0.3s ease-in-out both;
+}
+
+.a11y-nav [aria-expanded][aria-controls] ~ .a11y-nav-animate-out {
+  animation: a11y-nav-hide 0.3s ease-in-out both;
+}
+
+/* 1st Level Styling */
+
+.a11y-nav > li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex: 1 1 auto;
+}
+
+/* 2nd Level Styling */
+
+.a11y-nav li ul {
+  position: absolute;
+  top: calc(100% + 1em);
+  left: 0;
+  background: white;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.a11y-nav li ul li {
+  padding: 5px;
+  justify-content: flex-start;
+}
+
+/* 3rd Level Styling */
+
+.a11y-nav li ul ul {
+  left: 100%;
+  top: 0;
+}
+
+.a11y-nav li:last-child ul ul {
+  left: auto;
+  right: 100%;
+}
+
+@keyframes a11y-nav-show {
+  from {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes a11y-nav-hide {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+}

@@ -7,7 +7,7 @@
   "source": "src/a11y-nav.ts",
   "scripts": {
     "dev": "vite",
-    "build": "build:lib && build:web",
+    "build": "npm run build:lib && npm run build:web",
     "build:lib": "microbundle --name A11YNav --sourcemap false && cp src/a11y-nav.css dist/",
     "build:web": "vite build",
     "preview": "vite preview"
