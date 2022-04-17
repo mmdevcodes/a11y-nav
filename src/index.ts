@@ -1,4 +1,3 @@
-import './a11y-nav.css';
 import './index.css';
 import A11YNav from './a11y-nav';
 import Prism from "prismjs";
