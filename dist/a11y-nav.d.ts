@@ -1,4 +1,4 @@
-import './index.css';
+import './a11y-nav.css';
 interface A11YNavOptions {
     animate?: boolean;
     duration?: number;

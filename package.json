@@ -1,15 +1,15 @@
 {
   "name": "a11y-nav",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for accessible navigations",
   "author": "mmahandev",
   "license": "MIT",
   "source": "src/a11y-nav.ts",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:lib && npm run build:web",
-    "build:lib": "microbundle --name A11YNav --sourcemap false && cp src/a11y-nav.css dist/",
+    "build": "microbundle --name A11YNav --sourcemap false && cp src/a11y-nav.css dist/",
     "build:web": "vite build",
+    "prebuild": "rimraf dist",
     "preview": "vite preview"
   },
   "exports": {
