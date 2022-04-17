@@ -3,7 +3,8 @@ import prismjs from "vite-plugin-prismjs";
 
 export default defineConfig({
   build: {
-    outDir: 'web'
+    outDir: "web",
+    base: "a11y-nav",
   },
   plugins: [
     prismjs({
