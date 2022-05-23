@@ -5,6 +5,7 @@ interface A11YNavOptions {
   duration?: number;
   useArrowKeys?: boolean;
   closeOnBlur?: boolean;
+  bodyClass?: string | boolean;
 }
 
 interface Control {
@@ -21,7 +22,7 @@ interface Menu {
 
 export default class A11YNav {
   nav: HTMLElement;
-  options: A11YNavOptions;
+  options: Required<A11YNavOptions>;
   controls: Control[];
   menus: Menu[];
   focusables: HTMLElement[];
@@ -37,6 +38,8 @@ export default class A11YNav {
       useArrowKeys: true,
       // Enables closing of menus when focus leaves the nav
       closeOnBlur: true,
+      // Class to add to body when a menu is open. If false, no class is added.
+      bodyClass: "a11y-nav-menu-open",
     };
     this.controls = this.getControls();
     this.menus = this.controls.map((control) => control.menu);
@@ -242,7 +245,9 @@ export default class A11YNav {
     menu.el.classList.add("a11y-nav-active");
     menu.control.el.setAttribute("aria-expanded", "true");
     menu.el.parentElement?.classList.add("a11y-nav-child-open");
-    document.body.classList.add("a11y-nav-menu-open");
+    if (typeof this.options.bodyClass === 'string' && this.options.bodyClass.length > 0) {
+      document.body.classList.add(this.options.bodyClass);
+    }
 
     if (this.options.animate) {
       menu.el.classList.add("a11y-nav-animate-in");
@@ -260,7 +265,9 @@ export default class A11YNav {
       });
 
     // Set classes/properties
-    document.body.classList.remove("a11y-nav-menu-open");
+    if (typeof this.options.bodyClass === 'string') {
+      document.body.classList.remove(this.options.bodyClass);
+    }
     menu.control.el.setAttribute("aria-expanded", "false");
 
     if (this.options.animate) {

@@ -4,6 +4,7 @@ interface A11YNavOptions {
     duration?: number;
     useArrowKeys?: boolean;
     closeOnBlur?: boolean;
+    bodyClass?: string | boolean;
 }
 interface Control {
     el: HTMLButtonElement;
@@ -17,7 +18,7 @@ interface Menu {
 }
 export default class A11YNav {
     nav: HTMLElement;
-    options: A11YNavOptions;
+    options: Required<A11YNavOptions>;
     controls: Control[];
     menus: Menu[];
     focusables: HTMLElement[];
