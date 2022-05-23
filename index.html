@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A11Y Nav</title>
-  <script type="module" crossorigin src="/a11y-nav/assets/index.a109b96b.js"></script>
+  <script type="module" crossorigin src="/a11y-nav/assets/index.fbc2366c.js"></script>
   <link rel="stylesheet" href="/a11y-nav/assets/index.edd3a120.css">
 </head>
 
@@ -247,6 +247,8 @@ const a11yNav = new A11YNav(document.querySelector(".a11y-nav"), options);
     useArrowKeys: true,
     // Enables closing of menus when focus leaves the nav
     closeOnBlur: true,
+    // Class to add to body when a menu is open. If false, no class is added.
+    bodyClass: "a11y-nav-menu-open",
 }
     </code></pre>
     <h2>Methods</h2>
