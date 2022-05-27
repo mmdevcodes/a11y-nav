@@ -62,11 +62,15 @@ export default class A11YNav {
       // set initial properties
       control.menu.el.classList.add("a11y-nav-menu");
       control.menu.el.setAttribute("tabindex", "-1");
-      control.el.setAttribute("aria-expanded", "false");
 
       // Attach event listeners
       control.el.addEventListener("click", this.onButtonClick);
       control.el.addEventListener("keydown", this.onButtonKeyDown);
+
+      // Open menu if aria-expanded is true on page load
+      if (control.el.getAttribute("aria-expanded") === "true") {
+        this.openMenu(control.menu);
+      }
     });
 
     this.focusables.forEach((focusable) => {
@@ -76,6 +80,7 @@ export default class A11YNav {
     if (this.options.closeOnBlur) {
       this.nav.addEventListener("focusout", this.onBlur);
     }
+
   }
 
   private onButtonClick(event: MouseEvent): void {
@@ -334,7 +339,7 @@ export default class A11YNav {
               el: menu,
               id: menu.id,
               hadTabIndex: menu.hasAttribute("tabindex"),
-            },
+            }
           } as Control;
 
           control.menu.control = control;

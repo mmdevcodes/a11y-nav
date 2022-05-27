@@ -2,8 +2,6 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 1230px;
-  margin: 0 auto;
 }
 
 a {
@@ -69,4 +67,52 @@ nav {
 
 .a11y-nav .mega-menu img {
   padding: 10px;
+}
+
+.container {
+  max-width: 1230px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.container > * {
+  flex: 1 1 auto;
+}
+
+.main {
+  width: 75%;
+  padding: 0 10px;
+}
+
+.side {
+  width: 25%;
+  padding: 0 10px;
+}
+
+.rail-nav {
+  display: block;
+}
+
+.rail-nav > li {
+  display: block;
+}
+
+.rail-nav a, .rail-nav button {
+  padding: 5px 0;
+}
+
+.rail-nav li ul {
+  position: static;
+  border: none;
+  border-left: 2px solid black;
+  padding-left: 10px;
+}
+
+.rail-nav li ul li {
+  padding: 0;
+}
+
+.rail-nav .active,
+.rail-nav [aria-expanded="true"] {
+  font-weight: bold;
 }
