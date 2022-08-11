@@ -20,7 +20,7 @@
     "build:web": "vite build",
     "prebuild": "rimraf dist",
     "preview": "vite preview",
-    "version": "npm run build",
+    "version": "npm run build && git add .",
     "release": "np"
   },
   "exports": "./dist/a11y-nav.modern.mjs",
