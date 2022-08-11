@@ -1,7 +1,5 @@
 .a11y-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -72,17 +70,14 @@
 
 .a11y-nav > li {
   position: relative;
-  display: flex;
-  justify-content: center;
+  display: block;
   flex: 1 1 auto;
 }
 
 /* 2nd Level Styling */
 
 .a11y-nav li ul {
-  position: absolute;
-  top: calc(100% + 1em);
-  left: 0;
+  position: relative;
   background: white;
   width: 100%;
   border: 1px solid black;
@@ -93,17 +88,44 @@
   justify-content: flex-start;
 }
 
-/* 3rd Level Styling */
+/* Desktop styles */
 
-.a11y-nav li ul ul {
-  left: 100%;
-  top: 0;
+@media (min-width: 992px) {
+  .a11y-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* 1st Level Styling */
+  
+  .a11y-nav > li {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 2nd level styling */
+  
+  .a11y-nav li ul {
+    position: absolute;
+    top: calc(100% + 1em);
+    left: 0;
+  }
+
+  /* Third level styling */
+  
+  .a11y-nav li ul ul {
+    left: 100%;
+    top: 0;
+  }
+
+  .a11y-nav li:last-child ul ul {
+    left: auto;
+    right: 100%;
+  }
 }
 
-.a11y-nav li:last-child ul ul {
-  left: auto;
-  right: 100%;
-}
+/* Open/Close Animation */
 
 @keyframes a11y-nav-show {
   from {
