@@ -25,6 +25,11 @@ nav {
   position: relative;
 }
 
+.site-nav {
+  position: relative;
+  z-index: 9001;
+}
+
 .a11y-nav > .has-mega-menu {
   position: static;
 }
