@@ -5,6 +5,7 @@
   "author": "mmahandev",
   "license": "MIT",
   "source": "src/a11y-nav.ts",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mmahandev/a11y-nav.git"
@@ -22,9 +23,14 @@
     "version": "npm run build && git add .",
     "release": "np"
   },
-  "main": "./dist/a11y-nav.umd.js",
-  "module": "./dist/a11y-nav.module.mjs",
-  "exports": "./dist/a11y-nav.modern.mjs",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/a11y-nav.js",
+  "umd:main": "./dist/a11y-nav.umd.js",
+  "module": "./dist/a11y-nav.module.js",
+  "exports": "./dist/a11y-nav.modern.js",
+  "unpkg": "./dist/a11y-nav.umd.js",
   "types": "dist/a11y-nav.d.ts",
   "style": "dist/a11y-nav.css",
   "amdName": "A11YNav",
