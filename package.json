@@ -18,6 +18,7 @@
     "dev": "vite",
     "build": "microbundle && cp src/a11y-nav.css dist/",
     "build:web": "vite build",
+    "test": "",
     "prebuild": "rimraf dist",
     "preview": "vite preview",
     "version": "npm run build && git add .",
