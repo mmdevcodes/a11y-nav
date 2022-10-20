@@ -29,7 +29,16 @@
   "main": "./dist/a11y-nav.js",
   "umd:main": "./dist/a11y-nav.umd.js",
   "module": "./dist/a11y-nav.module.js",
-  "exports": "./dist/a11y-nav.modern.js",
+  "exports": {
+    ".": {
+      "import": "./dist/a11y-nav.modern.js",
+      "require": "./dist/a11y-nav.umd.js"
+    },
+    "./dist/a11y-nav.css": {
+      "import": "./dist/a11y-nav.css",
+      "require": "./dist/a11y-nav.css"
+    }
+  },
   "unpkg": "./dist/a11y-nav.umd.js",
   "types": "dist/a11y-nav.d.ts",
   "style": "dist/a11y-nav.css",
