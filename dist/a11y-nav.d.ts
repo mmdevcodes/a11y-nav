@@ -1,10 +1,11 @@
-import './a11y-nav.css';
+import "./a11y-nav.css";
 interface A11YNavOptions {
     animate?: boolean;
     duration?: number;
     useArrowKeys?: boolean;
     closeOnBlur?: boolean;
     bodyClass?: string | boolean;
+    focusOnOpen?: boolean;
 }
 interface Control {
     el: HTMLButtonElement;
@@ -33,6 +34,7 @@ export default class A11YNav {
     private openMenu;
     private closeMenu;
     closeAllMenus(): void;
+    /** Get the menu depth of an element */
     private getMenuDepthFromEl;
     private getMenuFromEl;
     private getControlFromEl;
