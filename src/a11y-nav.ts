@@ -265,12 +265,16 @@ export default class A11YNav {
 
       if (!forceNoFocus && this.options.focusOnOpen) {
         setTimeout(() => {
-          menu.el.focus();
+          menu.el.focus({
+            preventScroll: true
+          });
         }, this.options.duration);
       }
     } else {
       if (!forceNoFocus && this.options.focusOnOpen) {
-        menu.el.focus();
+        menu.el.focus({
+          preventScroll: true
+        });
       }
     }
   }
@@ -318,7 +322,7 @@ export default class A11YNav {
     this.menus.forEach((menu) => {
       this.closeMenu(menu);
     });
-    
+
     if (typeof this.options.bodyClass === "string") {
       document.body.classList.remove(this.options.bodyClass);
     }
