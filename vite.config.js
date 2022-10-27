@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import prismjs from "vite-plugin-prismjs";
+import { prismjsPlugin } from "vite-plugin-prismjs";
 
 export default defineConfig({
   base: "/a11y-nav/",
@@ -7,7 +7,7 @@ export default defineConfig({
     outDir: "web",
   },
   plugins: [
-    prismjs({
+    prismjsPlugin({
       languages: ["html", "css", "javascript"],
       theme: "okaidia",
       css: true,

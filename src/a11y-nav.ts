@@ -1,4 +1,4 @@
-import './a11y-nav.css';
+import "./a11y-nav.css";
 
 interface A11YNavOptions {
   animate?: boolean;
@@ -6,6 +6,7 @@ interface A11YNavOptions {
   useArrowKeys?: boolean;
   closeOnBlur?: boolean;
   bodyClass?: string | boolean;
+  focusOnOpen?: boolean;
 }
 
 interface Control {
@@ -40,6 +41,8 @@ export default class A11YNav {
       closeOnBlur: true,
       // Class to add to body when a menu is open. If false, no class is added.
       bodyClass: "a11y-nav-menu-open",
+      // Focus menu that just opened
+      focusOnOpen: true,
     };
     this.controls = this.getControls();
     this.menus = this.controls.map((control) => control.menu);
@@ -69,7 +72,7 @@ export default class A11YNav {
 
       // Open menu if aria-expanded is true on page load
       if (control.el.getAttribute("aria-expanded") === "true") {
-        this.openMenu(control.menu);
+        this.openMenu(control.menu, true);
       }
     });
 
@@ -80,7 +83,6 @@ export default class A11YNav {
     if (this.options.closeOnBlur) {
       this.nav.addEventListener("focusout", this.onBlur);
     }
-
   }
 
   private onButtonClick(event: MouseEvent): void {
@@ -234,11 +236,12 @@ export default class A11YNav {
     }
   }
 
-  private openMenu(menu: Menu): void {
+  private openMenu(menu: Menu, forceNoFocus = false): void {
     // Close all other menus on the same level
     this.menus.forEach((otherMenu) => {
       if (
-        otherMenu !== menu &&
+        otherMenu.el !== menu.el &&
+        otherMenu.el.classList.contains("a11y-nav-active") &&
         this.getMenuDepthFromEl(otherMenu.el) ===
           this.getMenuDepthFromEl(menu.el)
       ) {
@@ -250,16 +253,32 @@ export default class A11YNav {
     menu.el.classList.add("a11y-nav-active");
     menu.control.el.setAttribute("aria-expanded", "true");
     menu.el.parentElement?.classList.add("a11y-nav-child-open");
-    if (typeof this.options.bodyClass === 'string' && this.options.bodyClass.length > 0) {
+    if (
+      typeof this.options.bodyClass === "string" &&
+      this.options.bodyClass.length > 0
+    ) {
       document.body.classList.add(this.options.bodyClass);
     }
 
     if (this.options.animate) {
       menu.el.classList.add("a11y-nav-animate-in");
+
+      if (!forceNoFocus && this.options.focusOnOpen) {
+        setTimeout(() => {
+          menu.el.focus();
+        }, this.options.duration);
+      }
+    } else {
+      if (!forceNoFocus && this.options.focusOnOpen) {
+        menu.el.focus();
+      }
     }
   }
 
   private closeMenu(menu: Menu): void {
+    // Skip this if it's already closed
+    if (!menu.el.classList.contains("a11y-nav-active")) return;
+    
     // Close all children menus currently open first
     menu.el
       .querySelectorAll<HTMLElement>(".a11y-nav-menu")
@@ -269,8 +288,13 @@ export default class A11YNav {
         if (childMenu) this.closeMenu(childMenu);
       });
 
+    // Checks if any other menus are open on other levels
+    const hasOtherOpenMenus = this.menus.some(
+      (m) => m.el.classList.contains("a11y-nav-active") && m.el !== menu.el
+    );
+
     // Set classes/properties
-    if (typeof this.options.bodyClass === 'string') {
+    if (typeof this.options.bodyClass === "string" && !hasOtherOpenMenus) {
       document.body.classList.remove(this.options.bodyClass);
     }
     menu.control.el.setAttribute("aria-expanded", "false");
@@ -294,8 +318,13 @@ export default class A11YNav {
     this.menus.forEach((menu) => {
       this.closeMenu(menu);
     });
+    
+    if (typeof this.options.bodyClass === "string") {
+      document.body.classList.remove(this.options.bodyClass);
+    }
   }
 
+  /** Get the menu depth of an element */
   private getMenuDepthFromEl(element: HTMLElement): number {
     let level = 0;
     let parent = element.parentElement;
@@ -339,7 +368,7 @@ export default class A11YNav {
               el: menu,
               id: menu.id,
               hadTabIndex: menu.hasAttribute("tabindex"),
-            }
+            },
           } as Control;
 
           control.menu.control = control;

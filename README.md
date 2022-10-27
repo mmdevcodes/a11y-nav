@@ -55,16 +55,18 @@ const nav = new A11YNav(document.querySelector(".a11y-nav"), options);
 ```js
 // Default options:
 {
-    // adds delay for toggling menu open/close animation classes
-    animate: true,
-    // amount of time in ms for menu open/close animation
-    duration: 300,
-    // Enables use of arrow keys to navigate menus
-    useArrowKeys: true,
-    // Enables closing of menus when focus leaves the nav
-    closeOnBlur: true,
-    // Class to add to body when a menu is open. If false, no class is added.
-    bodyClass: "a11y-nav-menu-open",
+  // adds delay for toggling menu open/close animation classes
+  animate: true,
+  // amount of time in ms for menu open/close animation
+  duration: 300,
+  // Enables use of arrow keys to navigate menus
+  useArrowKeys: true,
+  // Enables closing of menus when focus leaves the nav
+  closeOnBlur: true,
+  // Class to add to body when a menu is open. If false, no class is added.
+  bodyClass: "a11y-nav-menu-open",
+  // Focus menu that just opened
+  focusOnOpen: true,
 }
 ```
 
@@ -78,6 +80,7 @@ nav.destroy();
 | Method         | Description                                               |
 | -------------  | --------------------------------------------------------- |
 | destroy        | Removes everything that the A11YNav created in the DOM    |
+| closeAllMenus  | Closes all currently opened menus                         |
 
 ## Browser support
 
