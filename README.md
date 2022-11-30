@@ -82,6 +82,30 @@ nav.destroy();
 | destroy        | Removes everything that the A11YNav created in the DOM    |
 | closeAllMenus  | Closes all currently opened menus                         |
 
+## Events
+
+```js
+// Example use of the 'afterOpen' event
+const navEl = document.querySelector(".a11y-nav");
+
+navEl.addEventListener("afterOpen", function (e) {
+  console.log(e.detail.menu);
+});
+
+const a11yNav = new A11YNav(navEl);
+```
+
+| Event         | Detail                              | Description                         |
+| ------------- | ----------------------------------- | ----------------------------------- |
+| init          | a11yNav                             | Fires after nav initialization      |
+| beforeOpen    | a11yNav, menu                       | Fires before menu open              |
+| afterOpen     | a11yNav, menu                       | Fires after menu open               |
+| beforeClose   | a11yNav, menu                       | Fires before menu close             |
+| afterClose    | a11yNav, menu                       | Fires after menu close              |
+| destroy       | a11yNav                             | Fires after the nav is destroyed    |
+
+Events listeners should be added before initializing the nav if possible. For example `init` will require it.
+
 ## Browser support
 
 Currently works in all browsers except IE 11 until I figure out how to correctly polyfill the UMD build.

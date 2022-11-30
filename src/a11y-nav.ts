@@ -83,6 +83,8 @@ export default class A11YNav {
     if (this.options.closeOnBlur) {
       this.nav.addEventListener("focusout", this.onBlur);
     }
+
+    this.nav.dispatchEvent(new CustomEvent("init", { detail: this }));
   }
 
   private onButtonClick(event: MouseEvent): void {
@@ -237,6 +239,15 @@ export default class A11YNav {
   }
 
   private openMenu(menu: Menu, forceNoFocus = false): void {
+    this.nav.dispatchEvent(
+      new CustomEvent("beforeOpen", {
+        detail: {
+          a11yNav: this,
+          menu,
+        },
+      })
+    );
+
     // Close all other menus on the same level
     this.menus.forEach((otherMenu) => {
       if (
@@ -266,15 +277,33 @@ export default class A11YNav {
       if (!forceNoFocus && this.options.focusOnOpen) {
         setTimeout(() => {
           menu.el.focus({
-            preventScroll: true
+            preventScroll: true,
           });
+
+          this.nav.dispatchEvent(
+            new CustomEvent("afterOpen", {
+              detail: {
+                a11yNav: this,
+                menu,
+              },
+            })
+          );
         }, this.options.duration);
       }
     } else {
       if (!forceNoFocus && this.options.focusOnOpen) {
         menu.el.focus({
-          preventScroll: true
+          preventScroll: true,
         });
+
+        this.nav.dispatchEvent(
+          new CustomEvent("afterOpen", {
+            detail: {
+              a11yNav: this,
+              menu,
+            },
+          })
+        );
       }
     }
   }
@@ -282,6 +311,15 @@ export default class A11YNav {
   private closeMenu(menu: Menu): void {
     // Skip this if it's already closed
     if (!menu.el.classList.contains("a11y-nav-active")) return;
+
+    this.nav.dispatchEvent(
+      new CustomEvent("beforeClose", {
+        detail: {
+          a11yNav: this,
+          menu,
+        },
+      })
+    );
     
     // Close all children menus currently open first
     menu.el
@@ -311,10 +349,28 @@ export default class A11YNav {
         menu.el.classList.remove("a11y-nav-active");
         menu.el.classList.remove("a11y-nav-animate-out");
         menu.el.parentElement?.classList.remove("a11y-nav-child-open");
+
+        this.nav.dispatchEvent(
+          new CustomEvent("afterClose", {
+            detail: {
+              a11yNav: this,
+              menu,
+            },
+          })
+        );
       }, this.options.duration);
     } else {
       menu.el.classList.remove("a11y-nav-active");
       menu.el.parentElement?.classList.remove("a11y-nav-child-open");
+
+      this.nav.dispatchEvent(
+        new CustomEvent("afterClose", {
+          detail: {
+            a11yNav: this,
+            menu,
+          },
+        })
+      );
     }
   }
 
@@ -407,5 +463,13 @@ export default class A11YNav {
     });
 
     this.nav.removeEventListener("focusout", this.onBlur);
+
+    this.nav.dispatchEvent(
+      new CustomEvent("destroy", {
+        detail: {
+          a11yNav: this,
+        },
+      })
+    );
   }
 }

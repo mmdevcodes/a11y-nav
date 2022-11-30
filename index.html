@@ -260,6 +260,28 @@ const a11yNav = new A11YNav(document.querySelector(".a11y-nav"), options);
 const a11yNav = new A11YNav(document.querySelector('.a11y-nav'));
 a11yNav.destroy();
     </code></pre>
+    <h2>Events</h2>
+    <pre><code class="language-js">
+// Example use of the 'afterOpen' event
+const navEl = document.querySelector(".a11y-nav");
+
+navEl.addEventListener("afterOpen", function (e) {
+  console.log(e.detail.menu);
+});
+
+const a11yNav = new A11YNav(navEl);
+    </code></pre>
+    <pre>
+| Event         | Detail                              | Description                         |
+| ------------- | ----------------------------------- | ----------------------------------- |
+| init          | a11yNav                             | Fires after nav initialization      |
+| beforeOpen    | a11yNav, menu                       | Fires before menu open              |
+| afterOpen     | a11yNav, menu                       | Fires after menu open               |
+| beforeClose   | a11yNav, menu                       | Fires before menu close             |
+| afterClose    | a11yNav, menu                       | Fires after menu close              |
+| destroy       | a11yNav                             | Fires after the nav is destroyed    |
+    </pre>
+    <p>Events listeners should be added before initializing the nav if possible. For example `init` will require it.</p>
         </div>
         <div class="side">
             <ul class="a11y-nav rail-nav">
