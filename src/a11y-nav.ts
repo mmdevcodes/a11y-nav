@@ -330,36 +330,17 @@ export default class A11YNav {
         if (childMenu) this.closeMenu(childMenu);
       });
 
-    // Checks if any other menus are open on other levels
-    const hasOtherOpenMenus = this.menus.some(
-      (m) => m.el.classList.contains("a11y-nav-active") && m.el !== menu.el
-    );
+    const close = () => {
+      // Checks if any other menus are open on other levels
+      const hasOtherOpenMenus = this.menus.some(
+        (m) => m.el.classList.contains("a11y-nav-active") && m.el !== menu.el
+      );
 
-    // Set classes/properties
-    if (typeof this.options.bodyClass === "string" && !hasOtherOpenMenus) {
-      document.body.classList.remove(this.options.bodyClass);
-    }
-    menu.control.el.setAttribute("aria-expanded", "false");
+      // Set classes/properties
+      if (typeof this.options.bodyClass === "string" && !hasOtherOpenMenus) {
+        document.body.classList.remove(this.options.bodyClass);
+      }
 
-    if (this.options.animate) {
-      menu.el.classList.remove("a11y-nav-animate-in");
-      menu.el.classList.add("a11y-nav-animate-out");
-
-      setTimeout(() => {
-        menu.el.classList.remove("a11y-nav-active");
-        menu.el.classList.remove("a11y-nav-animate-out");
-        menu.el.parentElement?.classList.remove("a11y-nav-child-open");
-
-        this.nav.dispatchEvent(
-          new CustomEvent("afterClose", {
-            detail: {
-              a11yNav: this,
-              menu,
-            },
-          })
-        );
-      }, this.options.duration);
-    } else {
       menu.el.classList.remove("a11y-nav-active");
       menu.el.parentElement?.classList.remove("a11y-nav-child-open");
 
@@ -371,6 +352,20 @@ export default class A11YNav {
           },
         })
       );
+    }
+
+    menu.control.el.setAttribute("aria-expanded", "false");
+
+    if (this.options.animate) {
+      menu.el.classList.remove("a11y-nav-animate-in");
+      menu.el.classList.add("a11y-nav-animate-out");
+
+      setTimeout(() => {
+        close();
+        menu.el.classList.remove("a11y-nav-animate-out");
+      }, this.options.duration);
+    } else {
+      close();
     }
   }
 
